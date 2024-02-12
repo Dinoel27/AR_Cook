@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AR Menu experience</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
+    <script src="./dist/mr.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+
+<body>
+
+    <mr-app id debug="true" class="app">
+        <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
+        <mr-entity id="rig" data-comp-anchor="type:fixed;">
+            
+            <mr-panel id="tabbar" data-position="0 0 0.009">
+            <mr-button onclick="switchTab(0)" class="col-2">Food item</mr-button>
+            <mr-button onclick="switchTab(1)" class="col-3">Recipe</mr-button>
+            <mr-button onClick="switchTab(2)" class="col-4">Ingredients</mr-button>
+            <!-- <mr-button onClick="switchTab(3)" class="col-5">view</mr-button> -->
+            <mr-button onClick="spread()" class="col-5">spread</mr-button> 
+            </mr-panel>
+
+            <mr-panel id="nav"class="nav" data-position="0 -0.09 0.005">
+                <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button>
+                <mr-button style="margin-left: 10px;" onclick="App.prev()"> Prev </mr-button>
+                <mr-button style="margin-left: 10px;" onclick="App.next()"> Next </mr-button>
+                <mr-button class="button-order" style="margin-left:10px">Order Now</mr-button>
+            </mr-panel>
+            
+            <mr-panel id="panel1" class="stack" class="col-2">
+                <mr-panel id="panel1" class="layout">
+
+                <mr-div class="information" class="col-2">
+                    <mr-div class="tight-stack" class="col-2">
+                        <mr-text id="name" class="col-2">loading</mr-text>
+                        <mr-text id="cuisine">loading</mr-text>
+                        
+                    </mr-div>
+                    <mr-text id="desc" class="col-2">loading</mr-text>
+                    <mr-text id="allergens" class="col-2">loading</mr-text>
+                    </mr-div>
+                    
+     
+            </mr-panel>
+
+            <mr-panel id="panel" class="stack" class="col-3">
+            <mr-panel id="panel2" class="layout">
+
+                <!-- <mr-volume
+                id="volume" 
+                class="col-3"
+                data-comp-anchor="type: plane; label: table;">
+                <mr-div class="col-3">
+                    <mr-div id="models" class="col-3" style="z-index: 100"></mr-div>
+                </mr-div> -->
+    
+
+        <mr-div class="col-3">
+            <mr-div class="tight-stack" class="col-3">
+                <mr-text id="recipe" class="col-3">loading</mr-text>
+            </mr-div> 
+        </mr-div>
+           
+        </mr-panel>
+    </mr-panel>
+
+
+        <mr-panel id="panel" class="stack" class="col-4">
+        <mr-panel id="panel3" class="layout">
+          
+                <mr-div class="tight-stack" class="col-4">
+                    <mr-text id="ingredients" class="col-4">loading</mr-text>
+                </mr-div>
+
+            </mr-panel>
+        </mr-panel>
+
+        <mr-panel id="floating" class="col-5"> 
+         
+        <mr-volume
+        id="volume" 
+        class="col-5"
+        data-comp-anchor="type: plane; label: table;">
+        <mr-food id="food"></mr-food>
+        <mr-entity id="food-models"></mr-entity>
+        </mr-volume>
+
+            <mr-div class="illustration">
+                <mr-div id="models" class="col-5" style="z-index: 100"></mr-div>
+            </mr-div>
+        </mr-panel>
+    
+            
+
+           
+
+
+
+</mr-entity>
+
+
+    </mr-app>
+</body>
+
+       <script>
+    /*********** begin: mr-food entity ***********/
+
+    class MRFood extends MREntity {
+
+        constructor(){
+            super()
+
+            const geometry = new THREE.BoxGeometry(0.99, 0.99, 0.99);
+
+                const material = new THREE.MeshPhongMaterial({
+                // color: '#0235ff',
+                // side: 2,
+                // transparent: true,
+                // opacity: 0,
+                // specular: '#7989c4',
+                // clipping: true
+            })
+
+            this.mesh = new THREE.Mesh(geometry. material)
+            this.object3D.add(this.mesh)
+        }
+    }
+
+    customElements.define('mr-food', MRFood);
+
+
+    /*********** end: mr-food entity ***********/
+
+    /*********** start: mr.js app code ***********/
+
+    let volume = document.getElementById('volume')
+    let panel = document.getElementById('panel')
+    let xrButton = document.getElementById('xr-button')
+
+    volume.object3D.visible = false
+
+    let worldPosition = new THREE.Vector3()
+
+    function toggleMR() {
+        if (!mrjsUtils.xr.isPresenting) {
+            return
+        }
+        volume.object3D.visible = !volume.object3D.visible
+    }
+
+    let food = document.getElementById('food')
+
+    document.addEventListener('anchored', (e) => {
+
+        if (e.target == food.parentElement && e.target.plane) {
+            let width = e.target.plane.dimensions.x - 0.01
+            let depth = e.target.plane.dimensions.z - 0.01
+            let height = width > depth ? width : depth
+            height /= 1.5
+            
+        }
+    })
+
+    // document.addEventListener('exitXR', (e) => {
+    //     volume.object3D.visible = false
+    // })
+   </script>
+
+    <script>
+        let rig = document.querySelector('#rig')
+        let panels = document.querySelectorAll('.layout')
+
+        let frontIndex = 0
+
+        function switchTab(index){
+            panels[frontIndex].classList.remove('front')
+            panels[index].classList.add('front')
+            frontIndex = index
+            // panels[frontIndex].visibility = visibility.hidden;
+        }
+
+        let unfolded = false 
+
+        function spread(){
+            let index = 0 
+            let totalWidth = 0
+
+            let forwardVec = getForward(rig)
+
+            for (let panel of panels){
+
+                totalWidth += panel.width
+            }
+            
+            for (let panel of panels){
+                if (unfolded) {
+                    panel.object3D.position.set(0, 0, 0)
+                } else{
+                    panel.object3D.position.set(((panel.width) * index) - (totalWidth / panels.length), 0, ((index + 1) % 2) * 0.3)
+                    index += 1
+                }
+                panel.object3D.lookAt(forwardVec)
+
+
+            } 
+
+            unfolded = !unfolded
+           
+        }
+
+        function getForward(entity){
+            
+            let localForward = new THREE.Vector3(0, 0, 0.5);
+
+            let worldForward = entity.object3D.localToWorld(localForward)
+
+            return worldForward.applyQuaternion(entity.object3D.quaternion);
+
+        }
+
+        document.addEventListener('exitXR', () =>{
+            unfolded = false;
+            spread()
+        })
+
+
+    </script>
+
+    <script src="script.js"></script>
+
+</html>
