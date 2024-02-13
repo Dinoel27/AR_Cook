@@ -11,76 +11,48 @@
 
 <body>
 
-    <mr-app class="app">
+    <mr-app debug="true" class="app">
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
-        <mr-entity id="rig" data-comp-anchor="type:fixed;">
+        <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
 
             <mr-panel id="nav" class="nav" data-position="0 0 0.005">
-                <mr-button style="margin-left: auto;" onclick="toggleMR()">Portion</mr-button>
-                <mr-button style="margin-left: 10px;" onclick="App.prev()"> Prev </mr-button>
-                <mr-button style="margin-left: 10px;" onclick="App.next()"> Next </mr-button>
-                <mr-button class="button-order" style="margin-left:10px">Order Now</mr-button>
+                <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button>
+                <!-- <mr-button style="margin-left: 10px;" onclick="App.prev()">Prev</mr-button>
+                <mr-button style="margin-left: 10px;" onclick="App.next()">Next</mr-button> -->
 
-                <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
+
+                <!-- <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
                 <mr-button style="margin-left: 10px;" onclick="switchTab(1)">Recipe</mr-button>
                 <mr-button style="margin-left: 10px;" onClick="switchTab(2)">Items</mr-button>
-                <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button>
+                <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
             </mr-panel>
 
-            <!-- first panel  -->
-            <mr-panel id="panel1" class="stack" class="col-2">
-                <mr-panel id="panel1" class="layout">
+            <mr-panel data-comp-anchor="type:plane; label:table;">
+                <mr-model class="3dbutton" onclick="App.prev()" src="buttonprev.glb"></mr-model>
+                <mr-model class="3dbutton" onclick="App.next()" src="buttonnext.glb"></mr-model>
 
-                    <mr-div class="information" class="col-2">
-                        <mr-div class="tight-stack" class="col-2">
-                            <mr-text id="name" class="col-2">loading</mr-text>
-                            <mr-text id="cuisine">loading</mr-text>
-
-                        </mr-div>
-                        <mr-text id="desc" class="col-2">loading</mr-text>
-                        <mr-text id="allergens" class="col-2">loading</mr-text>
-                    </mr-div>
-                </mr-panel>
-            </mr-panel>
-
-            <!-- second panel  -->
-            <mr-panel id="panel2" class="stack" class="col-3">
-                <mr-panel id="panel2" class="layout">
-                    <mr-div class="col-3">
-                        <mr-div class="tight-stack" class="col-3">
-                            <mr-text id="recipe" class="col-3">loading</mr-text>
-                        </mr-div>
-                    </mr-div>
-                </mr-panel>
-            </mr-panel>
-
-            <!-- third panel use class if you want to use the same id-->
-            <mr-panel id="panel3" class="stack" class="col-4">
-                <mr-panel id="panel3" class="layout">
-
-                    <mr-div class="tight-stack" class="col-4">
-                        <mr-text id="ingredients" class="col-4">loading</mr-text>
-                    </mr-div>
-
-                </mr-panel>
-            </mr-panel>
-
-            <!-- separate panel for 3D models  -->
-            <mr-panel id="floating" class="col-5">
                 <mr-div class="illustration">
-                    <mr-div id="models" class="col-5" style="z-index: 120"></mr-div>
+                    <mr-div id="models" style="z-index: 100"></mr-div>
                 </mr-div>
+
+                <mr-div class="information">
+                    <mr-div class="tight-stack">
+                        <mr-text id="name">loading</mr-text>
+                        <mr-text id="cuisine">loading</mr-text>
+
+                    </mr-div>
+                    <mr-text id="desc">loading</mr-text>
+                    <mr-text id="allergens">loading</mr-text>
+                </mr-div>
+
             </mr-panel>
-
-
-            <!-- loading models for tabletop experience separate from panels  -->
-            <mr-volume id="volume" class="col-5" data-position="0 0 -0.5" data-comp-anchor="type: plane; label: table;">
-                <mr-food id="food"></mr-food>
-                <mr-entity id="food-models" class="col-5"></mr-entity>
-            </mr-volume>
 
         </mr-entity>
 
+        <mr-volume id="volume" data-comp-anchor="type: plane; label: table;">
+            <mr-food id="food"></mr-food>
+            <mr-entity id="food-models"></mr-entity>
+        </mr-volume>
 
     </mr-app>
 </body>

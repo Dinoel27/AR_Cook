@@ -80,15 +80,14 @@ mr-button.hover {
 }
 
 .information {
-    grid-column: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    justify-content: center;
-    gap: 20px;
-    letter-spacing: 1px;
-    line-height: 1.5;
-    max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: start; 
+  justify-content: start;
+  gap: 20px;
+  letter-spacing: 1px;
+  line-height: 1.5;
+  max-width: 520px;
 }
 
 
@@ -154,15 +153,12 @@ mr-button.hover {
 /* test of panels */
 
 .illustration{
-    grid-column: 2;
-
-    margin-bottom: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 300px;
 }
 
   .col-1{
