@@ -32,10 +32,10 @@
                 <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button>
             </mr-panel>
 
-            <mr-model class="xrbutton" onclick="App.prev()" data-position="0.25 0 0" src="./buttonprev.glb"
-                data-comp-anchor="type:plane; label:table;"></mr-model>
-            <mr-model class="xrbutton" onclick="App.next()" data-position="-0.25 0 0" data-rotaion="0 0 180" src="./buttonprev.glb"
-                data-comp-anchor="type:plane; label:table;"></mr-model>
+            <mr-panel data-comp-anchor="type:plane; label:table;">
+            <mr-model class="xrbutton" onclick="App.prev()" data-position="0.25 0 0" src="./buttonprev.glb"></mr-model>
+            <mr-model class="xrbutton" onclick="App.next()" data-position="-0.25 0 0" data-rotaion="0 0 0" src="./buttonprev.glb"></mr-model>
+                </mr-panel>
             <mr-panel>
                 <mr-div class="illustration">
                     <mr-div id="models" style="z-index: 100"></mr-div>
