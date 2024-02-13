@@ -17,8 +17,8 @@
             volumePosition: "-0.01 -0.015 -0.01",
             desc: "Ingredients: Bean sprouts, Bamboo shoots, Shoyu broth, Chashu pork, Chicken, Corn, Ginger, Green onions, Miso paste, Mushrooms, Nori, Ramen noodles, Sesame oil, Sesame seeds, Soy sauce, Tofu.",
             allergens: "Allergens: Eggs (used in soft-boiled eggs), Sesame (in sesame oil and seeds), Soy (in soy sauce and toppings), Wheat (in noodles and broths).",
-            recipe: "Bring broth to a boil. \nAdd vegetables and meat. \nWait for broth to smell tasty and add noodels.\n Etc",
-            ingredients: "beans, fish, rice, broth etc",
+            recipe: "Start by boiling chicken or pork bones in water to create the broth. \nAdd soy sauce, mirin, garlic cloves, ginger, and green onions to the pot. \nInclude kombu and dried shiitake mushrooms for depth of flavor. \nSimmer the broth on low heat for at least 6 hours, then strain. \nCook ramen noodles according to package instructions. \nPrepare toppings: slice chashu, halve ajitama, and chop green onions. \nAssemble the ramen by placing noodles in a bowl, pouring hot broth over them, and adding toppings. \nGarnish with sesame seeds and serve immediately.\n",
+            ingredients: "Chicken or pork bones, Water, Soy sauce, Mirin, Garlic cloves, Ginger, Green onions, Kombu, Dried shiitake mushrooms, Ramen noodles, Chashu, Ajitama, Bamboo shoots, Nori, and optional toppings like Corn, Butter, and Spicy bean sprout.",
         },
 
         {
@@ -34,9 +34,9 @@
             position: "0 0 0",
             volumePosition: "-0.01 -0.010 -0.01",
             desc: "Ingredients: Sashimi-grade fish (such as tuna or salmon), rice (check for potential cross-contamination if allergic to gluten), avocado, cucumber, edamame, seaweed (Nori), soy sauce, pickled ginger, wasabi.",
-            allergens: "Allergens: soy sauce, fish.",
-            recipe: "Cook rice. \nAdd fish. \nAdd vegetables. \nAdd other testy foods.\n",
-            ingredients: "tuna or salmon, rice, soy sauce, avocado, cucumber",
+            allergens: "Allergens: soy sauce(look for soy-free sauces), fish(be deliberate in choosing other fish for your dish).",
+            recipe: "Prepare sushi rice by cooking it and seasoning with a mix of rice vinegar, sugar, and salt. \nLet it cool. \nThinly slice fresh fish such as salmon, tuna, and yellowtail for the topping. \nCut avocado and cucumber into thin slices. \nIn a bowl, spread a layer of sushi rice as the base. \nArrange the fish slices and vegetable toppings over the rice. \nGarnish with seaweed salad, masago or tobiko, and pickled ginger. \nServe with soy sauce and wasabi on the side.\n",
+            ingredients: "Short-grain sushi rice, Rice vinegar, Sugar, Salt, Fresh slices of fish such as Salmon, Tuna, Yellowtail, Avocado, Cucumber, Seaweed salad, Masago or Tobiko, Pickled ginger, Wasabi, and Soy sauce for serving.",
         },
 
         {
@@ -52,9 +52,9 @@
             position: "0 0 0",
             volumePosition: "-0.01 0.05 -0.01",
             desc: "Ingredients: Sushi Rice, Salmon (Shake), Avocado, Cucumber, Nori (Seaweed), Sesame Seeds, Soy Sauce (contains soy and wheat; choose gluten-free if needed), Pickled Ginger, Wasabi.",
-            allergens: "Allergens: soy, fish (salmon).",
-            recipe: "Cook tasty food. \nEnjoy food.\n Live wholesome life.\n",
-            ingredients: "nori, rice, salmon, sesame seeds",
+            allergens: "Allergens: soy sauce(look for soy-free sauces), fish(be deliberate in choosing other fish for your dish).",
+            recipe: "Cook short-grain Japanese rice and set aside to cool slightly. \nMarinate salmon fillets in a mixture of soy sauce, mirin, sake (optional), and sugar. \nPan-fry the salmon until fully cooked, then let it cool and cut into bite-sized pieces. \nPlace a serving of rice in a bowl, top with cooked salmon. \nGarnish with chopped green onions, sesame seeds, and shredded nori. \nOptionally, add a dollop of wasabi to the bowl for extra heat. \nServe immediately while warm.\n",
+            ingredients: "Short-grain Japanese rice, Fresh salmon fillets, Soy sauce, Mirin, Sake (optional), Sugar, Green onions, Sesame seeds, Shredded nori, and optional Wasabi for seasoning.",
         },
 
         // {

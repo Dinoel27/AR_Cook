@@ -7,7 +7,7 @@ mr-app {
 .nav {
     --space-around: 20px; 
     --height: 72px;
-    position:fixed; 
+    position: fixed; 
     display: flex;
     flex-direction: row; 
     bottom: var(--space-around);
@@ -17,11 +17,14 @@ mr-app {
     background-color: green;
     align-items: center;
     justify-content: center;
+    /* align-self: auto; */
     padding: 0px 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     border-radius: 20px;
     z-index: 2;
-
 }
+
 
 .maindesc {
     width: calc(100% - var(--space-around) - var(--space-around));
@@ -39,8 +42,11 @@ mr-app {
 
 
 .tight-stack {
-    display: flex;
-    flex-flow: column nowrap;
+    /* display: flex; */
+    /* flex-flow: column; */
+    /* flex-direction: column;
+    align-items: center; 
+    justify-content: center; */
     gap: 0;
 }
 
@@ -74,36 +80,17 @@ mr-button.hover {
 }
 
 .information {
+    grid-column: 2;
     display: flex;
     flex-direction: column;
-    align-items: start; 
-    justify-content: start;
+    align-items: center; 
+    justify-content: center;
     gap: 20px;
     letter-spacing: 1px;
     line-height: 1.5;
     max-width: 520px;
 }
 
-.information1 {
-    /* display: block;
-    flex-direction: row; */
-    /* gap: 20px;
-    letter-spacing: 1px;
-    line-height: 1.5;
-    max-width: 200px; */
-    max-width: 300px;
-}
-
-.illustration{
-    grid-column: 2;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 300px;
-}
 
 #desc {
     font-family:Arial, Helvetica, sans-serif;
@@ -131,20 +118,35 @@ mr-button.hover {
     font-size: 24px;
     font-weight: 600; 
     font-style: bold; 
+    margin-top: 200px;
 }
 
 #ingredients {
     /* white-space: nowrap; */
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 400;
     font-style: normal;
+}
+
+.custom-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Adjust the space between items */
+}
+
+.list-item {
+  display: block; /* Ensure each item appears on a new line */
+  flex-direction: column;
+  /* Additional styling */
+  padding: 5px 0; /* Example padding */
+  border-bottom: 1px solid #ccc; /* Example bottom border for each item */
 }
 
 #recipe {
     /* white-space: nowrap; */
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 400;
     font-style: normal; 
 }
@@ -154,36 +156,38 @@ mr-button.hover {
 .illustration{
     grid-column: 2;
 
+    margin-bottom: 300px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 300px;
+    height: 520px;
 }
 
   .col-1{
-    grid-column: 1;
+    grid-column: 2;
   }
 
   .col-2{
     grid-column: 2;
 
-    margin-top: 150px;
+    /* margin-top: 150px; */
 
     display: flex;
     flex-direction: column;
-    align-items: start; 
-    justify-content: start;
-    gap: 20px;
+
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
     letter-spacing: 1px;
     line-height: 1.5;
-    max-width: 520px;
+    /* max-width: 520px; */
   }
 
   .col-3{
-    grid-column: 3;
-    margin-top: 150px;
+    grid-column: 2;
+    margin-top: 100px;
 
     display: flex;
     flex-direction: column;
@@ -196,14 +200,14 @@ mr-button.hover {
   }
 
   .col-4{
-    grid-column: 4;
 
-    margin-top: 150px;
+    margin-top: 100px;
+    grid-column: 2;
 
     display: flex;
     flex-direction: column;
-    align-items: start; 
-    justify-content: start;
+    align-items: center; 
+    justify-content: center;
     gap: 20px;
     letter-spacing: 1px;
     line-height: 1.5;
@@ -211,16 +215,17 @@ mr-button.hover {
   }
 
   .col-5{
-    grid-column: 5;
+    grid-column: 2;
 
-    margin-top: 50px; 
+    /* margin-top: 50px;  */
     display: flex;
-    flex-direction: column;
+  
+    flex-direction: row;
     align-items: start;
     justify-content: start;
     max-width: 520px;
     /* z-index: 10; */
-    opacity: 50%;
+
   }
 
   #navbar {
@@ -243,11 +248,12 @@ mr-button.hover {
     position:fixed;
     bottom: 0;
     left: 0;
-    width: 100%;
-    display: grid;
+    width: 50%;
+    display: flex;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 1vh;
+    padding: 0.5vh;
     height: fit-content;
+    align-self: flex-start;
     z-index: 0;
   }
 
@@ -306,15 +312,21 @@ mr-button.hover {
   }
 
   .layout {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center;
+
     background-color: white;
     padding-top: 6vw;
-    display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     gap: 1vw;
     grid-auto-rows: auto;
+
   }
 
-@media (max-width: 768px) {
+@media (max-width: 520px) {
     .layout {
         grid-template-columns: 1fr; /* Stack grid items vertically on smaller screens */
         padding-top: 4vw; /* Adjust padding for smaller screens */
