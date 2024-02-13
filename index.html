@@ -27,9 +27,9 @@
                 <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
             </mr-panel>
 
-            <mr-panel data-comp-anchor="type:plane; label:table;">
-                <mr-model class="3dbutton" onclick="App.prev()" src="buttonprev.glb"></mr-model>
-                <mr-model class="3dbutton" onclick="App.next()" src="buttonnext.glb"></mr-model>
+            <mr-panel>
+                <mr-model class="xrbutton" onclick="App.prev()" data-position="0 0 0" src="buttonprev.glb" data-comp-anchor="type:plane; label:table;"></mr-model>
+                <mr-model class="xrbutton" onclick="App.next()" data-position="0 0 0" src="buttonnext.glb" data-comp-anchor="type:plane; label:table;"></mr-model>
 
                 <mr-div class="illustration">
                     <mr-div id="models" style="z-index: 100"></mr-div>
@@ -49,7 +49,7 @@
 
         </mr-entity>
 
-        <mr-volume id="volume" data-comp-anchor="type: plane; label: table;">
+        <mr-volume id="volume" data-comp-anchor="type: plane; label:table;">
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
         </mr-volume>

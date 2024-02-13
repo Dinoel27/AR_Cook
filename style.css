@@ -150,6 +150,10 @@ mr-button.hover {
     font-style: normal; 
 }
 
+.xrbutton{
+ scale: 1;
+}
+
 /* test of panels */
 
 .illustration{
