@@ -15,26 +15,28 @@
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
         <!-- <mr-entity id="rig" data-comp-anchor="type:plane; label: table;"> -->
 
-            <!-- <mr-panel id="nav" class="nav" data-position="0 0 0.005"> -->
-                <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button> -->
-                <!-- <mr-button style="margin-left: 10px;" onclick="App.prev()">Prev</mr-button>
+        <!-- <mr-panel id="nav" class="nav" data-position="0 0 0.005"> -->
+        <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button> -->
+        <!-- <mr-button style="margin-left: 10px;" onclick="App.prev()">Prev</mr-button>
                 <mr-button style="margin-left: 10px;" onclick="App.next()">Next</mr-button> -->
 
 
-                <!-- <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
+        <!-- <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
                 <mr-button style="margin-left: 10px;" onclick="switchTab(1)">Recipe</mr-button>
                 <mr-button style="margin-left: 10px;" onClick="switchTab(2)">Items</mr-button>
                 <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
-            <!-- </mr-panel> -->
+        <!-- </mr-panel> -->
 
-            <mr-entity> 
-                <mr-panel id="nav" class="nav" data-position="0 0 0"> 
-                    <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button>
-                </mr-panel>
+        <mr-entity>
+            <mr-panel id="nav" class="nav" data-position="0 0 0">
+                <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button>
+            </mr-panel>
+
+            <mr-model class="xrbutton" onclick="App.prev()" data-position="0 0 0" src="./buttonprev.glb"
+                data-comp-anchor="type:plane; label:table;"></mr-model>
+            <mr-model class="xrbutton" onclick="App.next()" data-position="0 0 0" src="./buttonnext.glb"
+                data-comp-anchor="type:plane; label:table;"></mr-model>
             <mr-panel>
-                <mr-model class="xrbutton" onclick="App.prev()" data-position="0 0 0" src="buttonprev.glb" data-comp-anchor="type:plane; label:table;"></mr-model>
-                <mr-model class="xrbutton" onclick="App.next()" data-position="0 0 0" src="buttonnext.glb" data-comp-anchor="type:plane; label:table;"></mr-model>
-
                 <mr-div class="illustration">
                     <mr-div id="models" style="z-index: 100"></mr-div>
                 </mr-div>
