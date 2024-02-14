@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>AR Menu experience</title>
-    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
-    <!-- <script src="./dist/mr.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
+    <script src="./dist/mr.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
@@ -13,12 +13,6 @@
 
     <mr-app debug="true" class="app">
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
-        <!-- <mr-entity id="rig" data-comp-anchor="type:plane; label: table;"> -->
-
-        <!-- <mr-panel id="nav" class="nav" data-position="0 0 0.005"> -->
-        <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button> -->
-        <!-- <mr-button style="margin-left: 10px;" onclick="App.prev()">Prev</mr-button>
-                <mr-button style="margin-left: 10px;" onclick="App.next()">Next</mr-button> -->
 
 
         <!-- <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
@@ -27,15 +21,20 @@
                 <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
         <!-- </mr-panel> -->
 
-        <mr-entity>
-            <mr-panel id="nav" class="nav" data-position="0 0 0">
-                <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button> </mr-panel>
+        <mr-entity data-comp-anchor="type: floating;">
 
-            <mr-panel data-position="0 0 0" data-comp-anchor="type: fixed;">
-                <!-- <mr-div class="illustration">
+            <mr-panel id="panel" class="stack">
+
+                <mr-div class="nav">
+                    <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button>
+                    <mr-button style="margin-left: 10px;" onclick="App.prev()"> Prev </mr-button>
+                    <mr-button style="margin-left: 10px;" onclick="App.next()"> Next </mr-button>
+                    <mr-button class="button-order" style="margin-left:10px">Order Now</mr-button>
+                </mr-div>
+
+                <mr-div class="illustration">
                     <mr-div id="models" style="z-index: 100"></mr-div>
-                </mr-div> -->
-
+                </mr-div>
 
                 <mr-div class="information">
                     <mr-div class="tight-stack">
@@ -46,7 +45,15 @@
                     <mr-text id="desc">loading</mr-text>
                     <mr-text id="allergens">loading</mr-text>
                 </mr-div>
+
             </mr-panel>
+
+        </mr-entity>
+
+        <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
+            <mr-model class="xrbutton" data-position="0.05 0 0" onclick="App.prev()" src="button.glb"></mr-model>
+            <mr-model class="xrbutton" data-position="-0.05 0 0" onclick="App.next()" data-rotation="180 0 180"
+                src="button.glb"></mr-model>
 
         </mr-entity>
 
@@ -57,9 +64,6 @@
 
 
         <mr-volume id="volume" data-comp-anchor="type: plane; label:table;">
-            <mr-model class="xrbutton" onclick="App.prev()" data-position="0.05 0.5 0" src="./button.glb"></mr-model>
-            <mr-model class="xrbutton" onclick="App.next()" data-position="-0.05 0.5 0" data-rotation="180 0 180"
-                src="./button.glb"></mr-model>
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
         </mr-volume>
