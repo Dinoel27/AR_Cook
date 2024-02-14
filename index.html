@@ -21,7 +21,7 @@
                 <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
         <!-- </mr-panel> -->
 
-        <mr-entity data-comp-anchor="type: floating;">
+        <!-- <mr-entity data-comp-anchor="type: floating;">
 
             <mr-panel id="panel" class="stack">
 
@@ -45,19 +45,22 @@
 
             </mr-panel>
 
-        </mr-entity>
+        </mr-entity> -->
 
         <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.05 0 0" onclick="App.prev()" src="./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.05 0 0" onclick="App.next()" data-rotation="0 0 0" src="./buttonnext.glb"></mr-model>
+            <mr-model class="spbutton" data-position="0.05 0 -0.005" onclick="App.prev()" src="./buttonprev.glb"></mr-model>
+            <mr-model class="spbutton" data-position="-0.05 0 -0.005" onclick="App.next()" data-rotation="0 0 0" src="./buttonnext.glb"></mr-model>
+
+
+            <mr-volume id="volume" data-comp-anchor="type: plane; label:table;">
+                <mr-food id="food"></mr-food>
+                <mr-entity id="food-models"></mr-entity>
+            </mr-volume>
 
         </mr-entity>
 
         <!-- fix food placement  -->
-        <mr-volume id="volume" data-comp-anchor="type: plane; label:table;">
-            <mr-food id="food"></mr-food>
-            <mr-entity id="food-models"></mr-entity>
-        </mr-volume>
+      
 
     </mr-app>
 </body>
