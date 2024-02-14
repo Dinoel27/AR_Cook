@@ -32,6 +32,13 @@
                 <mr-button style="margin-left: auto;" onclick="toggleMR()">AR</mr-button>
             </mr-panel>
 
+            <mr-div data-comp-anchor="type: plane; label: table;">
+            <mr-model class="xrbutton" onclick="App.prev()" data-position="0.15 0 0" src="./button.glb"></mr-model>
+            <mr-model class="xrbutton" onclick="App.next()" data-position="-0.15 0 0" data-rotation="180 0 180"
+                src="./button.glb"></mr-model> </mr-div>
+        </mr-entity>
+
+        <mr-entity>
 
             <mr-panel data-comp-anchor="type:fixed;">
                 <!-- <mr-div class="illustration">
@@ -55,18 +62,6 @@
         <mr-volume id="volume" data-comp-anchor="type: plane; label:table;">
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
-
-            <mr-model class="xrbutton" onclick="App.prev()" data-position="0.15 0 0" src="./button.glb"></mr-model>
-            <mr-model class="xrbutton" onclick="App.next()" data-position="-0.15 0 0" data-rotation="180 0 180"
-                src="./button.glb"></mr-model>
-
-        </mr-volume>
-
-        <mr-volume
-        id="volume" 
-        data-comp-anchor="type: plane; label: table;">
-        <mr-food id="food"></mr-food>
-        <mr-entity id="food-models"></mr-entity>
         </mr-volume>
 
     </mr-app>
