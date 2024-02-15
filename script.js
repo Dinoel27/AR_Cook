@@ -1,5 +1,5 @@
     var __appState = {
-    selected: 0,
+    selected: 1,
     debugToggle: false, 
 
     dishes: [
