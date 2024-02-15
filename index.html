@@ -42,9 +42,11 @@
                     <mr-text id="desc">loading</mr-text>
                     <mr-text id="allergens">loading</mr-text>
                 </mr-div>
+
+                <mr-div class="illustration"></mr-div>
             </mr-panel>
 
-            <mr-entity id="objects">
+            <!-- <mr-entity id="objects">
                 <mr-div class="illustration">
                     <mr-div id="models" onclick="togglePanelVisibility()">
                         <mr-div id="models">
@@ -52,7 +54,7 @@
                         </mr-div>
                     </mr-div>
                 </mr-div>
-            </mr-entity>
+            </mr-entity> -->
 
         </mr-entity>
 
@@ -65,7 +67,7 @@
         </mr-entity>
 
 
-        <mr-volume id="volume" data-position="0.05 0.5 -0.5" data-comp-anchor="type: plane; label:table;">
+        <!-- <mr-volume id="volume" data-position="0.05 0.5 -0.5" data-comp-anchor="type: plane; label:table;">
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
 
@@ -73,19 +75,21 @@
                 <mr-div id="models" style="z-index: 100"></mr-div>
             </mr-div>
 
+        </mr-volume> -->
+
+        <mr-volume
+        id="volume" 
+        data-position="0.05 0.5 -0.5"
+        data-comp-anchor="type: plane; label: table;">
+        <mr-food id="food"></mr-food>
+        <mr-entity id="food-models"></mr-entity>
         </mr-volume>
-
-
-
-
-        <!-- fix food placement  -->
-
 
     </mr-app>
 </body>
 
 
-<script>
+<!-- <script>
     let rig = document.querySelector('#rig')
     let panels = document.querySelectorAll('.layout')
 
@@ -143,7 +147,7 @@
     })
 
 
-</script>
+</script> -->
 
 <script>
     function togglePanelVisibility() {
