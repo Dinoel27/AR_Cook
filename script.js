@@ -1,5 +1,5 @@
     var __appState = {
-    selected: 1,
+    selected: 3,
     debugToggle: false, 
 
     dishes: [
@@ -48,7 +48,7 @@
             vAnimation: {clip:0, action: 'play'},
             scale: 0.35,
             scale2: 0.35,
-            rotation: "45 0 0",
+            rotation: "0 0 0",
             position: "0 0 0",
             volumePosition: "-0.01 0.05 -0.01",
             desc: "Ingredients: Sushi Rice, Salmon (Shake), Avocado, Cucumber, Nori (Seaweed), Sesame Seeds, Soy Sauce (contains soy and wheat; choose gluten-free if needed), Pickled Ginger, Wasabi.",
