@@ -48,15 +48,47 @@
         </mr-entity>
 
         <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
-           <mr-button onclick="App.prev()"> <mr-model class="spbutton" data-position="0.09 0 0.5"" src="./buttonprev.glb"></mr-model></mr-button>
-           <mr-button onclick="App.next()"> <mr-model class="spbutton" data-position="-0.09 0 0.5"" data-rotation="0 0 0" src="./buttonnext.glb"></mr-model></mr-button>
+        <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" " src="./buttonprev.glb"></mr-model>
+        <mr-model class="spbutton" data-position="-0.09 0 0.5"" data-rotation="0 0 0" onclick="App.next()" src="./buttonnext.glb"></mr-model>
+
 
             <mr-div class="illustration">
-                <mr-div id="models" style="z-index: 100"></mr-div>
+                <mr-div id="models" style="z-index: 100" onclick="switchTab(0)" class="col-2"></mr-div>
             </mr-div>
         </mr-entity>
 
-        <mr-volume id="volume" data-position="0 0.5 -0.25" data-comp-anchor="type: plane; label:table;">
+        <mr-panel 
+        id="panel1"
+        class="layout front">
+            <mr-text class="col-2 title" >
+            Panel 1
+            </mr-text>
+
+            <mr-text class="col-2">
+                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
+            </mr-text>
+            <mr-text class="col-2">
+                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
+            </mr-text>
+
+            <mr-text class="col-2">
+                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
+            </mr-text>
+            <mr-text class="col-2">
+                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
+            </mr-text>
+
+            <mr-text class="col-2">
+                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
+            </mr-text>
+            <mr-text class="col-2">
+                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
+            </mr-text>
+            
+          
+        </mr-panel>
+
+        <mr-volume id="volume" data-position="0.5 0.5 -0.5" data-comp-anchor="type: plane; label:table;">
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
 
