@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <title>AR Menu experience</title>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script>
-    <script src="./dist/mr.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
+    <!-- <script src="./dist/mr.js"></script> -->
     <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
@@ -37,9 +37,6 @@
         </mr-panel>
 
 
-
-        </mr-entity>
-
         <mr-entity data-comp-anchor="type:plane; label: table;">
             <mr-model class="spbutton" data-position="0.25 -0.25 0.25" onclick="App.prev()" src="
                 ./buttonprev.glb"></mr-model>
@@ -49,21 +46,22 @@
 
         <mr-entity data-comp-anchor="type: plane; label: table">
             <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
-            src="./test.glb"></mr-model>
-
+                src="./test.glb"></mr-model>
         </mr-entity>
 
+<!-- 
+        <mr-volume id="volume" data-position="0 0 0" data-comp-anchor="type: plane; label: table;">
+            <mr-food id="food"></mr-food>
+            <mr-entity id="food-models"></mr-entity>
+        </mr-volume> -->
 
-        <!-- <mr-div class="illustration">
-            <mr-div id="models" style="z-index: 100"></mr-div>
-        </mr-div> -->
-            <mr-volume
+        <mr-volume
         id="volume" 
-        data-position="0 0 0"
         data-comp-anchor="type: plane; label: table;">
         <mr-food id="food"></mr-food>
         <mr-entity id="food-models"></mr-entity>
         </mr-volume>
+
 
     </mr-app>
 </body>

@@ -56,38 +56,6 @@
             recipe: "Cook short-grain Japanese rice and set aside to cool slightly. \nMarinate salmon fillets in a mixture of soy sauce, mirin, sake (optional), and sugar. \nPan-fry the salmon until fully cooked, then let it cool and cut into bite-sized pieces. \nPlace a serving of rice in a bowl, top with cooked salmon. \nGarnish with chopped green onions, sesame seeds, and shredded nori. \nOptionally, add a dollop of wasabi to the bowl for extra heat. \nServe immediately while warm.\n",
             ingredients: "Short-grain Japanese rice, Fresh salmon fillets, Soy sauce, Mirin, Sake (optional), Sugar, Green onions, Sesame seeds, Shredded nori, and optional Wasabi for seasoning.",
         },
-
-        // {
-        //     name: "Pizza Margarita",
-        //     cuisine: "Italian",
-        //     model: 'pizza.glb',
-        //     volume: 'pizza.glb',
-        //     Animation: {clip:0, action: 'play'},
-        //     vAnimation: {clip:0, action: 'play'},
-        //     scale: 0.2,
-        //     scale2: 0.6,
-        //     rotation: "45 0 0",
-        //     position: "0 0 0",
-        //     volumePosition: "0.01 0.05 0.01",
-        //     desc: "Ingredients: pizza dough, fresh tomatoes, fresh mozzarella cheese, fresh basil, olive oil, garlic, salt and pepper to taste.",
-        //     allergens: "Allergens: gluten (dough), dairy (cheese).",
-        // },
-
-        // {
-        //     name: "Bacon Red Pepper Pizza",
-        //     cuisine: "Italian",
-        //     model: 'white_pizza.glb',
-        //     volume: 'white_pizza.glb',
-        //     Animation: {clip:0, action: 'play'},
-        //     vAnimation: {clip:0, action: 'play'},
-        //     scale: 0.2,
-        //     scale2: 0.6,
-        //     rotation: "45 0 0",
-        //     position: "0 0 0",
-        //     volumePosition: "0.01 0.05 0.01",
-        //     desc: "Ingredients: Pizza dough, fresh tomatoes, mozzarella cheese, bacon, red pepper, black pepper (spice), mushrooms.",
-        //     allergens: "Allergens: gluten (dough), dairy (cheese).",
-        // },
     ],
 
     next: function (){
