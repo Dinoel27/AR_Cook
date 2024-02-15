@@ -195,4 +195,67 @@
     });
 
 
+    /*********** begin: mr-food entity ***********/
+
+    class MRFood extends MREntity {
+
+        constructor() {
+            super()
+
+            const geometry = new THREE.BoxGeometry(0.99, 0.99, 0.99);
+
+            const material = new THREE.MeshPhongMaterial({
+                // color: '#0235ff',
+                // side: 2,
+                // transparent: true,
+                // opacity: 0,
+                // specular: '#7989c4',
+                // clipping: true
+            })
+
+            this.mesh = new THREE.Mesh(geometry.material)
+            this.object3D.add(this.mesh)
+        }
+    }
+
+    customElements.define('mr-food', MRFood);
+
+
+    /*********** end: mr-food entity ***********/
+
+    /*********** start: mr.js app code ***********/
+
+    let volume = document.getElementById('volume')
+    let panel = document.getElementById('panel')
+    let xrButton = document.getElementById('xr-button')
+
+    volume.object3D.visible = false
+
+    let worldPosition = new THREE.Vector3()
+
+    function toggleMR() {
+        if (!mrjsUtils.xr.isPresenting) {
+            return
+        }
+        volume.object3D.visible = !volume.object3D.visible
+    }
+
+    let food = document.getElementById('food')
+
+    document.addEventListener('anchored', (e) => {
+
+        if (e.target == food.parentElement && e.target.plane) {
+            let width = e.target.plane.dimensions.x - 0.01
+            let depth = e.target.plane.dimensions.z - 0.01
+            let height = width > depth ? width : depth
+            height /= 1.5
+
+        }
+    })
+
+    document.addEventListener('exitXR', (e) => {
+        volume.object3D.visible = false
+    })
+
+
 
