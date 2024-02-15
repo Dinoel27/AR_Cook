@@ -23,17 +23,17 @@
 
         <mr-entity data-comp-anchor="type: floating;">
 
-            <!-- <mr-panel id="panel" class="stack">
+            <mr-div id="nav">
 
                 <mr-div class="nav">
-                    <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button>
-                </mr-div> -->
+                    <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button> -->
 
-            <!-- <mr-div class="illustration">
-                    <mr-div id="models" style="z-index: 100"></mr-div>
-                </mr-div> -->
+                    <mr-button style="margin-left: 10px;" onclick="togglePanelVisibility()">test</mr-button>
+                </mr-div>
+            </mr-div>
 
-            <!-- <mr-div class="information">
+            <mr-panel id="panel" class="stack" style="visibility: hidden;">
+                <mr-div class="information">
                     <mr-div class="tight-stack">
                         <mr-text id="name">loading</mr-text>
                         <mr-text id="cuisine">loading</mr-text>
@@ -42,72 +42,25 @@
                     <mr-text id="desc">loading</mr-text>
                     <mr-text id="allergens">loading</mr-text>
                 </mr-div>
-
-            </mr-panel> -->
+            </mr-panel>
 
         </mr-entity>
 
         <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" " src="
+            <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" onclick="switchTab(0)" src="
                 ./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.09 0 0.5"" data-rotation=" 0 0 0" onclick="App.next()"
-                src="./buttonnext.glb"></mr-model>
-
-            <!-- 
-            <mr-div class="illustration">
-                <mr-div id="models" style="z-index: 100" onclick="switchTab(0)" class="col-2"></mr-div>
-            </mr-div> -->
-
-            
-            <!-- testing cube for interaction of panel -->
-            <mr-model src="./test.glb" data-position="0 0.5 0"> </mr-model>
+            <mr-model class="spbutton" data-position="-0.09 0 0.5" data-rotation=" 0 0 0" onclick="App.next()"
+                onclick="switchTab(1)" src="./buttonnext.glb"></mr-model>
 
         </mr-entity>
 
-        <mr-panel id="panel1" class="layout front">
-            <mr-text class="col-2 title">
-                Panel 1
-            </mr-text>
-
-            <mr-text class="col-2">
-                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco
-                cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
-            </mr-text>
-            <mr-text class="col-2">
-                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id
-                culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod
-                duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
-            </mr-text>
-
-            <mr-text class="col-2">
-                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco
-                cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
-            </mr-text>
-            <mr-text class="col-2">
-                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id
-                culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod
-                duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
-            </mr-text>
-
-            <mr-text class="col-2">
-                Cillum adipisicing enim non labore quis anim ad nulla occaecat est commodo ad nulla. Cillum ullamco
-                cupidatat est eiusmod ad aliqua. In fugiat magna aliqua eu minim ea amet labore anim.
-            </mr-text>
-            <mr-text class="col-2">
-                Laboris do est reprehenderit aliquip ut non veniam tempor cupidatat dolore. Lorem aliquip eiusmod id
-                culpa adipisicing laborum. Aliqua sint tempor ex mollit occaecat non quis aliquip nisi fugiat eiusmod
-                duis aute. Dolor velit veniam nostrud do labore consectetur aliquip.
-            </mr-text>
-
-
-        </mr-panel>
 
         <mr-volume id="volume" data-position="0.05 0.5 -0.5" data-comp-anchor="type: plane; label:table;">
             <mr-food id="food"></mr-food>
             <mr-entity id="food-models"></mr-entity>
 
             <mr-div class="illustration">
-                <mr-div id="models" style="z-index: 100" onclick="showtab(0)" class="col-2"></mr-div>
+                <mr-div id="models" style="z-index: 100"></mr-div>
             </mr-div>
 
         </mr-volume>
@@ -163,10 +116,6 @@
 
     }
 
-    function showtab(index) {
-        document.getElementById("mr-panel").style.visibility = "visible";
-    }
-    panel.object3D.visibility = false;
 
     function getForward(entity) {
 
@@ -184,6 +133,18 @@
     })
 
 
+</script>
+
+<script>
+    function togglePanelVisibility() {
+        var panel = document.getElementById('panel');
+
+        if (panel.style.visibility === 'hidden' || panel.style.visibility === '') {
+            panel.style.visibility = 'visible';
+        } else {
+            panel.style.visibility = 'hidden';
+        }
+    }
 </script>
 
 <script src="script.js"></script>
