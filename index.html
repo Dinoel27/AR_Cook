@@ -4,9 +4,11 @@
 <head>
     <meta charset="utf-8">
     <title>AR Menu experience</title>
-    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
-    <!-- <script src="./dist/mr.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
+    <script src="./dist/mr.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
+
 </head>
 
 <body>
@@ -14,72 +16,49 @@
     <mr-app debug="true" class="app">
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
 
+        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:table;" style="visibility: hidden;">
 
-        <!-- <mr-button style="margin-left: 10px;" onclick="switchTab(0)">Dish</mr-button>
-                <mr-button style="margin-left: 10px;" onclick="switchTab(1)">Recipe</mr-button>
-                <mr-button style="margin-left: 10px;" onClick="switchTab(2)">Items</mr-button>
-                <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
-        <!-- </mr-panel> -->
-
-        <!-- <mr-entity data-comp-anchor="type: floating;">
-
-            <mr-panel id="nav">
-
-                <mr-div class="nav">
-                   
-
-                    <mr-button style="margin-left: 10px;" onclick="togglePanelVisibility()">test</mr-button>
+            <mr-div class="information">
+                <mr-div class="tight-stack">
+                    <mr-text id="name">loading</mr-text>
+                    <mr-text id="cuisine">loading</mr-text>
                 </mr-div>
-            </mr-div> -->
-
-            <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:table;" style="visibility: hidden;">
-                <mr-div class="information">
-                    <mr-div class="tight-stack">
-                        <mr-text id="name">loading</mr-text>
-                        <mr-text id="cuisine">loading</mr-text>
-
-                    </mr-div>
-                    <mr-text id="desc">loading</mr-text>
-                    <mr-text id="allergens">loading</mr-text>
-                </mr-div>
-
-                <mr-div class="illustration"></mr-div>
-            </mr-panel>
-
-            <!-- <mr-entity id="objects">
-                <mr-div class="illustration">
-                    <mr-div id="models" onclick="togglePanelVisibility()">
-                        <mr-div id="models">
-
-                        </mr-div>
-                    </mr-div>
-                </mr-div>
-            </mr-entity> -->
-
-        </mr-entity>
-
-        <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.15 0 0.5" onclick="App.prev()" src="
-                ./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.15 0 0.5" data-rotation=" 0 0 0" onclick="App.next()" src="./buttonnext.glb"></mr-model>
-            <mr-model class="test" data-position="-0.001 0 0.5"  onclick="togglePanelVisibility()" src="./test.glb"></mr-model>
-
-        </mr-entity>
-
-
-        <!-- <mr-volume id="volume" data-position="0.05 0.5 -0.5" data-comp-anchor="type: plane; label:table;">
-            <mr-food id="food"></mr-food>
-            <mr-entity id="food-models"></mr-entity>
+                <mr-text id="desc">loading</mr-text>
+                <mr-text id="allergens">loading</mr-text>
+                <mr-text id="recipe">loading</mr-text>
+                <mr-text id="ingredients">loading</mr-text>
+            </mr-div>
 
             <mr-div class="illustration">
                 <mr-div id="models" style="z-index: 100"></mr-div>
             </mr-div>
 
-        </mr-volume> -->
+        </mr-panel>
 
-        <mr-volume
+
+
+        </mr-entity>
+
+        <mr-entity data-comp-anchor="type:plane; label: table;">
+            <mr-model class="spbutton" data-position="0.5 0 0.5" onclick="App.prev()" src="
+                ./buttonprev.glb"></mr-model>
+            <mr-model class="spbutton" data-position="-0.5 0 0.5" onclick="App.next()"
+                src="./buttonnext.glb"></mr-model>
+        </mr-entity>
+
+        <mr-entity data-comp-anchor="type: plane; label: table">
+            <mr-model class="test" data-position="-0.001 0 0.5" onclick="togglePanelVisibility()"
+            src="./test.glb"></mr-model>
+
+        </mr-entity>
+
+
+        <!-- <mr-div class="illustration">
+            <mr-div id="models" style="z-index: 100"></mr-div>
+        </mr-div> -->
+            <mr-volume
         id="volume" 
-        data-position="0.05 0.5 -0.5"
+        data-position="0 0 0"
         data-comp-anchor="type: plane; label: table;">
         <mr-food id="food"></mr-food>
         <mr-entity id="food-models"></mr-entity>
@@ -148,6 +127,72 @@
 
 
 </script> -->
+
+<script>
+    /*********** begin: mr-food entity ***********/
+
+    class MRFood extends MREntity {
+
+        constructor() {
+            super()
+
+            const geometry = new THREE.BoxGeometry(0.99, 0.99, 0.99);
+
+            const material = new THREE.MeshPhongMaterial({
+                // color: '#0235ff',
+                // side: 2,
+                // transparent: true,
+                // opacity: 0,
+                // specular: '#7989c4',
+                // clipping: true
+            })
+
+            this.mesh = new THREE.Mesh(geometry.material)
+            this.object3D.add(this.mesh)
+        }
+    }
+
+    customElements.define('mr-food', MRFood);
+
+
+    /*********** end: mr-food entity ***********/
+
+    /*********** start: mr.js app code ***********/
+
+    let volume = document.getElementById('volume')
+    let panel = document.getElementById('panel')
+    let xrButton = document.getElementById('xr-button')
+
+    volume.object3D.visible = false
+
+    let worldPosition = new THREE.Vector3()
+
+    function toggleMR() {
+        if (!mrjsUtils.xr.isPresenting) {
+            return
+        }
+        volume.object3D.visible = !volume.object3D.visible
+    }
+
+    let food = document.getElementById('food')
+
+    document.addEventListener('anchored', (e) => {
+
+        if (e.target == food.parentElement && e.target.plane) {
+            let width = e.target.plane.dimensions.x - 0.01
+            let depth = e.target.plane.dimensions.z - 0.01
+            let height = width > depth ? width : depth
+            height /= 1.5
+
+        }
+    })
+
+    document.addEventListener('exitXR', (e) => {
+        volume.object3D.visible = false
+    })
+
+</script>
+
 
 <script>
     function togglePanelVisibility() {
