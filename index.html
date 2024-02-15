@@ -21,16 +21,16 @@
                 <mr-button style="margin-left: 10px;" onClick="spread()">spread</mr-button> -->
         <!-- </mr-panel> -->
 
-        <mr-entity data-comp-anchor="type: floating;">
+        <!-- <mr-entity data-comp-anchor="type: floating;">
 
             <mr-panel id="nav">
 
                 <mr-div class="nav">
-                    <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button> -->
+                   
 
                     <mr-button style="margin-left: 10px;" onclick="togglePanelVisibility()">test</mr-button>
                 </mr-div>
-            </mr-div>
+            </mr-div> -->
 
             <mr-panel id="panel" class="stack" style="visibility: hidden;">
                 <mr-div class="information">
@@ -60,6 +60,7 @@
             <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" src="
                 ./buttonprev.glb"></mr-model>
             <mr-model class="spbutton" data-position="-0.09 0 0.5" data-rotation=" 0 0 0" onclick="App.next()" src="./buttonnext.glb"></mr-model>
+            <mr-model class="test" data-position="-0.001 0 0.5"  onclick="togglePanelVisibility()" src="./test.glb"></mr-model>
 
         </mr-entity>
 
