@@ -23,7 +23,7 @@
 
         <mr-entity data-comp-anchor="type: floating;">
 
-            <mr-div id="nav">
+            <mr-panel id="nav">
 
                 <mr-div class="nav">
                     <!-- <mr-button style="margin-left: auto;" onclick="toggleMR()">Actual Size</mr-button> -->
@@ -44,13 +44,22 @@
                 </mr-div>
             </mr-panel>
 
+            <mr-entity id="objects">
+                <mr-div class="illustration">
+                    <mr-div id="models" onclick="togglePanelVisibility()">
+                        <mr-div id="models">
+
+                        </mr-div>
+                    </mr-div>
+                </mr-div>
+            </mr-entity>
+
         </mr-entity>
 
         <mr-entity id="rig" data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" onclick="switchTab(0)" src="
+            <mr-model class="spbutton" data-position="0.09 0 0.5" onclick="App.prev()" src="
                 ./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.09 0 0.5" data-rotation=" 0 0 0" onclick="App.next()"
-                onclick="switchTab(1)" src="./buttonnext.glb"></mr-model>
+            <mr-model class="spbutton" data-position="-0.09 0 0.5" data-rotation=" 0 0 0" onclick="App.next()" src="./buttonnext.glb"></mr-model>
 
         </mr-entity>
 
