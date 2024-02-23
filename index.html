@@ -11,6 +11,7 @@
 
     <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script>
     
+    <!-- food is not responsive on function of onclick() -->
     <!-- <script src="./dist/mr.js"></script> -->
     <link rel="stylesheet" type="text/css" href="style.css" />
 
@@ -50,16 +51,18 @@
         <mr-entity data-comp-anchor="type: plane; label: table">
             <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
                 src="./test.glb"></mr-model>
+
+                <mr-model id="book" class="test" data-position="0 0 0" onclick="toggleBookAndPanel()" src="./assets/book_anim_f.glb" ></mr-model>
         </mr-entity>
 
 
-        <mr-volume
+        <!-- <mr-volume
         id="volume" 
         data-position="0.5 0.5 1"
         data-comp-anchor="type: plane; label: table;">
         <mr-food id="food"></mr-food>
         <mr-entity id="food-models"></mr-entity>
-        </mr-volume>
+        </mr-volume> -->
 
 
     </mr-app>
@@ -192,7 +195,7 @@
 </script>
 
 
-<script>
+<!-- <script>
     function togglePanelVisibility() {
         var panel = document.getElementById('panel');
 
@@ -202,6 +205,42 @@
             panel.style.visibility = 'hidden';
         }
     }
+</script> -->
+
+
+<script>
+    // Animation frame segments and initial state
+    let isPanelVisible = false;
+    const frameRate = 30; // Assuming 30 fps for your animations
+    const openAnimation = { startFrame: 0, endFrame: 125 };
+    const closeAnimation = { startFrame: 125, endFrame: 250 };
+
+    // Convert frame number to time in seconds
+    function frameToTime(frame) {
+        return frame / frameRate;
+    }
+
+    // Function to toggle book animation and panel visibility
+    function toggleBookAndPanel() {
+        // Toggle the panel visibility
+        var panel = document.getElementById('panel');
+        isPanelVisible = !isPanelVisible;
+        panel.style.visibility = isPanelVisible ? 'visible' : 'hidden';
+
+        // Determine which animation segment to play
+        let animation = isPanelVisible ? openAnimation : closeAnimation;
+        playAnimationSegment(frameToTime(animation.startFrame), frameToTime(animation.endFrame));
+    }
+
+    // Placeholder function to play animation segment
+    // You'll need to adapt this to your specific setup
+    function playAnimationSegment(startTime, endTime) {
+        console.log(`Playing animation from ${startTime} to ${endTime} seconds.`);
+        // Actual implementation here
+    }
+
+    // Attach the toggle function to the book model click event
+    document.getElementById('book').addEventListener('click', toggleBookAndPanel);
 </script>
 
 <script src="script.js"></script>
