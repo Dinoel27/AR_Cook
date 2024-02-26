@@ -38,6 +38,7 @@ mr-app {
   align-items: center;
   gap: 10px;
   padding: 0 30px;
+  background-color: beige;
   /* z-index: 3; */
 }
 

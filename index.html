@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>AR Menu experience</title>
     <script src="./dist/mr.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
@@ -14,7 +15,12 @@
     <mr-app debug="true" class="app">
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
 
-        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:table;" style="visibility: hidden;" data-position="-0.001 0.5 0.25">
+
+        <!-- <mr-entity data-position="-0.001 1 0.25"> -->
+
+        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:floating;" style="visibility: hidden;">
+
+            <mr-button class="mr-button" onclick="togglePanelVisibilityOff()">Close</mr-button>
 
             <mr-div class="information">
                 <mr-div class="tight-stack">
@@ -32,6 +38,7 @@
             </mr-div>
 
         </mr-panel>
+    <!-- </mr-entity> -->
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
             <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
@@ -49,13 +56,14 @@
         </mr-entity>
 
 
-        <!-- <mr-volume
+        <mr-volume
         id="volume" 
         data-position="0.5 0.5 1"
+        style="visibility: hidden;"
         data-comp-anchor="type: plane; label: table;">
         <mr-food id="food"></mr-food>
         <mr-entity id="food-models"></mr-entity>
-        </mr-volume> -->
+        </mr-volume>
 
 
     </mr-app>
@@ -198,7 +206,14 @@
         } else {
             panel.style.visibility = 'hidden';
         }
+    }
 
+    function togglePanelVisibilityOff() {
+        if (panel.style.visibility === 'visible' || panel.style.visibility === ''){
+            panel.style.visibility = 'hidden';
+        } else {
+            panel.style.visibility = 'visible';
+        }
     }
 </script>
 
