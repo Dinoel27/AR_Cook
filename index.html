@@ -7,12 +7,11 @@
 
     <!-- interactions on pointer click work; the food items don't change as I use prev and next function -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
-    
+    <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
 
-    <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script>
-    
     <!-- food is not responsive on function of onclick() -->
-    <!-- <script src="./dist/mr.js"></script> -->
+    <script src="./dist/mr.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
@@ -42,17 +41,18 @@
         </mr-panel>
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.25 -0.25 0.25" onclick="App.prev()" src="
-                ./buttonprev.glb"></mr-model>
+            <mr-model class="spbutton" data-position="0.25 -0.25 0.25" onclick="App.prev()"
+                 src="./buttonprev.glb"></mr-model>
             <mr-model class="spbutton" data-position="-0.25 -0.25 0.25" onclick="App.next()"
-                src="./buttonnext.glb"></mr-model>
+                 src="./buttonnext.glb"></mr-model>
         </mr-entity>
 
         <mr-entity data-comp-anchor="type: plane; label: table">
-            <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
-                src="./test.glb"></mr-model>
+            <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
+                src="./test.glb"></mr-model> -->
+            <mr-model id="book" class="test" data-position="0 0 0" onclick="togglePanelVisibility()" onclick="App.prev()"
+                src="./assets/book_anim_f.glb"></mr-model>
 
-                <mr-model id="book" class="test" data-position="0 0 0" onclick="toggleBookAndPanel()" src="./assets/book_anim_f.glb" ></mr-model>
         </mr-entity>
 
 
@@ -195,52 +195,42 @@
 </script>
 
 
-<!-- <script>
+<script>
     function togglePanelVisibility() {
         var panel = document.getElementById('panel');
+     
 
         if (panel.style.visibility === 'hidden' || panel.style.visibility === '') {
             panel.style.visibility = 'visible';
         } else {
             panel.style.visibility = 'hidden';
         }
-    }
-</script> -->
 
+    }
+</script>
 
 <script>
-    // Animation frame segments and initial state
-    let isPanelVisible = false;
-    const frameRate = 30; // Assuming 30 fps for your animations
-    const openAnimation = { startFrame: 0, endFrame: 125 };
-    const closeAnimation = { startFrame: 125, endFrame: 250 };
+    document.addEventListener('DOMContentLoaded', () => {
+        const model = document.getElementById('book'); // Adjust this ID to your model's
+        let animationAllowed = true; // Flag to control animation playback
 
-    // Convert frame number to time in seconds
-    function frameToTime(frame) {
-        return frame / frameRate;
-    }
+        model.addEventListener('click', () => {
+            // Check if animation is allowed to play
+            if (animationAllowed) {
+                // Start the animation
+                model.setAttribute('data-comp-animation', 'clip: 0; action: play;');
+                animationAllowed = false; // Prevent further animation starts until this one completes
 
-    // Function to toggle book animation and panel visibility
-    function toggleBookAndPanel() {
-        // Toggle the panel visibility
-        var panel = document.getElementById('panel');
-        isPanelVisible = !isPanelVisible;
-        panel.style.visibility = isPanelVisible ? 'visible' : 'hidden';
+                // Wait for the animation to complete (8333 ms for 250 frames at 30 fps)
+                setTimeout(() => {
+                    // Use 'pause' or similar to stop the animation, depending on mr.js capabilities
+                    model.setAttribute('data-comp-animation', 'clip: 0; action: stop;');
 
-        // Determine which animation segment to play
-        let animation = isPanelVisible ? openAnimation : closeAnimation;
-        playAnimationSegment(frameToTime(animation.startFrame), frameToTime(animation.endFrame));
-    }
-
-    // Placeholder function to play animation segment
-    // You'll need to adapt this to your specific setup
-    function playAnimationSegment(startTime, endTime) {
-        console.log(`Playing animation from ${startTime} to ${endTime} seconds.`);
-        // Actual implementation here
-    }
-
-    // Attach the toggle function to the book model click event
-    document.getElementById('book').addEventListener('click', toggleBookAndPanel);
+                    animationAllowed = true; // Allow animation to be started again
+                }, 8333); // Adjusted duration based on the calculation
+            }
+        });
+    });
 </script>
 
 <script src="script.js"></script>
