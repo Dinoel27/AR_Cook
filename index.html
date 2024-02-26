@@ -6,12 +6,12 @@
     <title>AR Menu experience</title>
 
     <!-- interactions on pointer click work; the food items don't change as I use prev and next function -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/gh/volumetrics-io/mrjs/dist/mr.js"></script> -->
 
     <!-- food is not responsive on function of onclick() -->
-    <script src="./dist/mr.js"></script>
+    <!-- <script src="./dist/mr.js"></script> -->
     <link rel="stylesheet" type="text/css" href="style.css" />
 
 </head>
@@ -21,7 +21,7 @@
     <mr-app debug="true" class="app">
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
 
-        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:table;" style="visibility: hidden;" data-position="-0.001 0.25 0.25">
+        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:table;" style="visibility: hidden;" data-position="-0.001 0.5 0.25">
 
             <mr-div class="information">
                 <mr-div class="tight-stack">
@@ -41,16 +41,16 @@
         </mr-panel>
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.25 -0.25 0.25" onclick="App.prev()"
+            <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
                  src="./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.25 -0.25 0.25" onclick="App.next()"
+            <mr-model class="spbutton" data-position="-0.25 0.5 0.5" onclick="App.next()"
                  src="./buttonnext.glb"></mr-model>
         </mr-entity>
 
         <mr-entity data-comp-anchor="type: plane; label: table">
             <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
                 src="./test.glb"></mr-model> -->
-            <mr-model id="book" class="test" data-position="-0.001 0.25 0.25" onclick="togglePanelVisibility()" onclick="App.prev()"
+            <mr-model id="book" class="test" data-position="-0.001 0.25 0.25" onclick="togglePanelVisibility()"
                 src="./assets/book_anim_f.glb"></mr-model>
 
         </mr-entity>
