@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>AR Menu experience</title>
+    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
+
     <script src="./dist/mr.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css" />
@@ -20,57 +22,63 @@
 
         <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:floating;" style="visibility: hidden;">
 
-            <mr-button class="mr-button" onclick="togglePanelVisibilityOff()">Close</mr-button>
+            <mr-button class="mr-button" style="z-index:10;" onclick="togglePanelVisibilityOff()">Close</mr-button>
+
+    
+
 
             <mr-div class="information">
                 <mr-div class="tight-stack">
                     <mr-text id="name">loading</mr-text>
                     <mr-text id="cuisine">loading</mr-text>
-                </mr-div>
+               
                 <mr-text id="desc">loading</mr-text>
                 <mr-text id="allergens">loading</mr-text>
+                <mr-text id="recipet" class="title-2">loading</mr-text>
                 <mr-text id="recipe">loading</mr-text>
+                <mr-text id="ingredientst" class="title-2">loading</mr-text>
                 <mr-text id="ingredients">loading</mr-text>
+               
+            </mr-div>
             </mr-div>
 
             <mr-div class="illustration">
-                <mr-div id="models" style="z-index: 100"></mr-div>
+                <mr-div id="models" style="z-index: 100" ></mr-div>
             </mr-div>
 
         </mr-panel>
-    <!-- </mr-entity> -->
+        <!-- </mr-entity> -->
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
             <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
-                 src="./buttonprev.glb"></mr-model>
-            <mr-model class="spbutton" data-position="-0.25 0.5 0.5" onclick="App.next()"
-                 src="./buttonnext.glb"></mr-model>
-        </mr-entity>
+            src="./buttonprev.glb"></mr-model>
+        <mr-model class="spbutton" data-position="-0.25 0.5 0.5" onclick="App.next()"
+            src="./buttonnext.glb"></mr-model>
 
-        <mr-entity data-comp-anchor="type: plane; label: table">
-            <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
-                src="./test.glb"></mr-model> -->
-            <mr-model id="book" class="test" data-position="-0.001 0.25 0.25" onclick="togglePanelVisibility()"
+            <mr-model id="book" class="test" data-position="-0.015 0.5 0.5" onclick="togglePanelVisibility()"
                 src="./assets/book_anim_f.glb"></mr-model>
-
         </mr-entity>
 
+        <!-- <mr-entity data-comp-anchor="type: plane; label: table"> -->
+        <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
+                src="./test.glb"></mr-model> -->
+        <!-- <mr-model id="book" class="test" data-position="-0.015 0.5 0.5" onclick="togglePanelVisibility()"
+                src="./assets/book_anim_f.glb"></mr-model> -->
 
-        <mr-volume
-        id="volume" 
-        data-position="0.5 0.5 1"
-        style="visibility: hidden;"
-        data-comp-anchor="type: plane; label: table;">
-        <mr-food id="food"></mr-food>
-        <mr-entity id="food-models"></mr-entity>
+        <!-- </mr-entity> -->
+
+        <mr-entity data-comp-anchor= "type:plane; label: anchor;" data-position="0.5 0.5 1" style="visibility: hidden;"
+        <mr-volume id="volume">
+            <mr-food id="food"></mr-food>
+            <mr-entity id="food-models"></mr-entity>
         </mr-volume>
-
+    </mr-entity>
 
     </mr-app>
 </body>
 
 
-<script>
+<!-- <script>
     let rig = document.querySelector('#rig')
     let panels = document.querySelectorAll('.layout')
 
@@ -128,92 +136,30 @@
     })
 
 
-</script>
-
-<script>
-    /*********** begin: mr-food entity ***********/
-
-    class MRFood extends MREntity {
-
-        constructor() {
-            super()
-
-            const geometry = new THREE.BoxGeometry(0.99, 0.99, 0.99);
-
-            const material = new THREE.MeshPhongMaterial({
-                // color: '#0235ff',
-                // side: 2,
-                // transparent: true,
-                // opacity: 0,
-                // specular: '#7989c4',
-                // clipping: true
-            })
-
-            this.mesh = new THREE.Mesh(geometry.material)
-            this.object3D.add(this.mesh)
-        }
-    }
-
-    customElements.define('mr-food', MRFood);
+</script> -->
 
 
-    /*********** end: mr-food entity ***********/
-
-    /*********** start: mr.js app code ***********/
-
-    let volume = document.getElementById('volume')
-    let panel = document.getElementById('panel')
-    let xrButton = document.getElementById('xr-button')
-
-    volume.object3D.visible = false
-
-    let worldPosition = new THREE.Vector3()
-
-    function toggleMR() {
-        if (!mrjsUtils.xr.isPresenting) {
-            return
-        }
-        volume.object3D.visible = !volume.object3D.visible
-    }
-
-    let food = document.getElementById('food')
-
-    document.addEventListener('anchored', (e) => {
-
-        if (e.target == food.parentElement && e.target.plane) {
-            let width = e.target.plane.dimensions.x - 0.01
-            let depth = e.target.plane.dimensions.z - 0.01
-            let height = width > depth ? width : depth
-            height /= 1.5
-
-        }
-    })
-
-    document.addEventListener('exitXR', (e) => {
-        volume.object3D.visible = false
-    })
-
-</script>
 
 
 <script>
     function togglePanelVisibility() {
         var panel = document.getElementById('panel');
-     
 
         if (panel.style.visibility === 'hidden' || panel.style.visibility === '') {
             panel.style.visibility = 'visible';
-        } else {
-            panel.style.visibility = 'hidden';
         }
+        // } else {
+        //     panel.style.visibility = 'hidden';
+        // }
     }
 
     function togglePanelVisibilityOff() {
-        if (panel.style.visibility === 'visible' || panel.style.visibility === ''){
+        if (panel.style.visibility === 'visible' || panel.style.visibility === '') {
             panel.style.visibility = 'hidden';
-        } else {
-            panel.style.visibility = 'visible';
         }
+        // } else {
+        //     panel.style.visibility = 'visible';
+        // }
     }
 </script>
 
