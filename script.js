@@ -49,7 +49,7 @@
             scale: 0.25,
             scale2: 0.35,
             rotation: "0 0 0",
-            position: "0 0 0",
+            position: "0 0 100",
             volumePosition: "-0.01 0.05 -0.01",
             desc: "Ingredients: Sushi Rice, Salmon (Shake), Avocado, Cucumber, Nori (Seaweed), Sesame Seeds, Soy Sauce (contains soy and wheat; choose gluten-free if needed), Pickled Ginger, Wasabi.",
             allergens: "Allergens: soy sauce(look for soy-free sauces), fish(be deliberate in choosing other fish for your dish).",
@@ -128,50 +128,50 @@
     const App = new Proxy(__appState, handler);
 
     App.dishes.forEach(dish =>{
-        let model = document.createElement("mr-model");
-        model.setAttribute("src", "./assets/" + dish.model);
-        model.dataset.name = dish.name;
-        model.dataset.cuisine = dish.cuisine;
-        model.dataset.desc = dish.desc;
-        model.dataset.allergens = dish.allergens;
-        model.dataset.recipe = dish.recipe;
-        model.dataset.ingredients = dish.ingredients;
-        model.dataset.position = dish.position;
-        model.dataset.rotation = dish.rotation;
-        // model.object3D.visible = false;
-        model.object3D.visible = App.dishes[App.selected].name === dish.name; 
+    //     let model = document.createElement("mr-model");
+    //     model.setAttribute("src", "./assets/" + dish.model);
+    //     model.dataset.name = dish.name;
+    //     model.dataset.cuisine = dish.cuisine;
+    //     model.dataset.desc = dish.desc;
+    //     model.dataset.allergens = dish.allergens;
+    //     model.dataset.recipe = dish.recipe;
+    //     model.dataset.ingredients = dish.ingredients;
+    //     model.dataset.position = dish.position;
+    //     model.dataset.rotation = dish.rotation;
+    //     // model.object3D.visible = false;
+    //     model.object3D.visible = App.dishes[App.selected].name === dish.name; 
 
-        let volumeModel = document.createElement("mr-model");
+    //     let volumeModel = document.createElement("mr-model");
 
-        volumeModel.setAttribute("src", "./assets/" + dish.volumeModel);
-        volumeModel.dataset.name = dish.name;
-        volumeModel.dataset.position = dish.volumePosition;
-        // volumeModel.object3D.visible = false;
-        volumeModel.object3D.visible = App.dishes[App.selected].name === dish.name;
+    //     volumeModel.setAttribute("src", "./assets/" + dish.volumeModel);
+    //     volumeModel.dataset.name = dish.name;
+    //     volumeModel.dataset.position = dish.volumePosition;
+    //     // volumeModel.object3D.visible = false;
+    //     volumeModel.object3D.visible = App.dishes[App.selected].name === dish.name;
 
-        Object.assign(model.style, {
-            scale: dish.scale
-        })
+    //     Object.assign(model.style, {
+    //         scale: dish.scale
+    //     })
 
-        Object.assign (volumeModel.style, {
-            scale: dish.scale2
-        })
+    //     Object.assign (volumeModel.style, {
+    //         scale: dish.scale2
+    //     })
 
        
 
-        document.querySelector("#models").append(model);
-        document.querySelector("#food-models").append(volumeModel);
+    //     document.querySelector("#models").append(model);
+    //     document.querySelector("#food-models").append(volumeModel);
 
-        model.onLoad = () => {
-            model.components.set('animation', dish.animation);
-        }
+    //     model.onLoad = () => {
+    //         model.components.set('animation', dish.animation);
+    //     }
 
-        volumeModel.onLoad = () =>{
-            volumeModel.components.set('animation', dish.vAnimation);
+    //     volumeModel.onLoad = () =>{
+    //         volumeModel.components.set('animation', dish.vAnimation);
 
-        }
+    //     }
 
-    });
+    // });
 
     document.addEventListener('DOMContentLoaded', function(){
         App.selected = 2;
@@ -183,10 +183,12 @@
             model.setAttribute("src", "./assets/" + dish.model);
             model.dataset.name = dish.name;
             model.dataset.scale = dish.scale;
+            model.dataset.position = dish.position;
             model.object3D.visible = App.dishes[App.selected].name === dish.name; // Initial visibility
 
             Object.assign(model.style, {
-                scale: dish.scale
+                scale: dish.scale,
+                position: dish.position,
             })
     
 
@@ -207,6 +209,6 @@
     });
 
 
-   
+})
 
 
