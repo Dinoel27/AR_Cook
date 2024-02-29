@@ -355,6 +355,10 @@ mr-button.hover {
   grid-auto-rows: auto; */
 }
 
+.test{
+  scale: 0.01;
+}
+
 @media (max-width: 520px) {
   .layout {
     grid-template-columns: 1fr;
@@ -377,6 +381,4 @@ mr-button.hover {
 }
 
 
-.test{
-  scale: 0.1;
-}
+
