@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>AR Menu experience</title>
+    <title>AR Sous-Chef</title>
     <script src="./dist/mr.js"></script>
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>  -->
@@ -31,21 +31,33 @@
                 <mr-div class="tight-stack">
                     <mr-text id="name">loading</mr-text>
                     <mr-text id="cuisine">loading</mr-text>
-                </mr-div>
+               
                 <mr-text id="desc">loading</mr-text>
                 <mr-text id="allergens">loading</mr-text>
+                <mr-text id="recipesub" class="title-2">loading</mr-text>
                 <mr-text id="recipe">loading</mr-text>
-                <mr-text id="ingredients">loading</mr-text>
             </mr-div>
+        </mr-div>
 
-            <mr-div class="illustration" >
-                <mr-div id="models" data-position="0 0 0"></mr-div>
+            <mr-div class="illustration" data-position="0 5 5" style="visibility:collapse;" >
+                <mr-div id="models" ></mr-div>
             </mr-div>
 
             <!-- <mr-volume id="volume" data-position="0 0 0"> <mr-food id="food"></mr-food> <mr-entity id="food-models"></mr-entity> </mr-volume> -->
 
         </mr-panel>
+
+        <mr-entity data-comp-anchor="type:plane; label: table;" class="stack" id="panel" data-position="0 0 1">
+            <mr-div class="illustration">
+                <mr-food id="food"></mr-food>
+                <mr-entity id="food-models"></mr-entity>
+                <mr-div id="models"></mr-div>
+            </mr-div>
+        </mr-entity>
     </mr-entity>
+
+    
+
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
             <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
@@ -53,10 +65,10 @@
             <mr-model class="spbutton" data-position="-0.25 0.5 0.5" onclick="App.next()"
                  src="./buttonnext.glb"></mr-model>
 
-                 <mr-model id="book" class="test" data-position="-0.001 0.5 0.5" onclick="togglePanelVisibility()"
+                 <mr-model id="book" class="book" data-position="-0.001 0.5 0.5" onclick="togglePanelVisibility()"
                 src="./assets/book_anim_f.glb"></mr-model>
         </mr-entity>
-
+=
         <mr-entity data-comp-anchor="type: plane; label: table">
             <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
                 src="./test.glb"></mr-model> -->
