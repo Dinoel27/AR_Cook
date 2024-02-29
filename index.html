@@ -21,9 +21,9 @@
         <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
 
 
-        <!-- <mr-entity data-position="-0.001 1 0.25"> -->
+        <mr-entity data-position="-0.05 1.5 -1" data-comp-anchor="type: plane; label: fixed;">
 
-        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:fixed;" data-position="-0.05 1.5 -1"  style="visibility: hidden;">
+        <mr-panel id="panel" class="stack" style="visibility: hidden;">
 
             <mr-button class="mr-button" style="z-index: 100;" onclick="togglePanelVisibilityOff()">Close</mr-button>
 
@@ -45,7 +45,7 @@
             <!-- <mr-volume id="volume" data-position="0 0 0"> <mr-food id="food"></mr-food> <mr-entity id="food-models"></mr-entity> </mr-volume> -->
 
         </mr-panel>
-    <!-- </mr-entity> -->
+    </mr-entity>
 
         <mr-entity data-comp-anchor="type:plane; label: table;">
             <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
