@@ -1,5 +1,5 @@
     var __appState = {
-    selected: 1,
+    selected: 0,
     debugToggle: false, 
 
     dishes: [
@@ -10,10 +10,10 @@
             volumeModel: 'ramen.glb',
             Animation: {clip:0, action: 'play'},
             vAnimation: {clip:0, action: 'play'},
-            scale: 0.95,
+            scale: 1.6,
             scale2: 2,
             rotation: "0 0 0", 
-            position: "0 0 1", 
+            position: "0 0 0", 
             volumePosition: "-0.01 -0.015 -0.01",
             desc: "Ingredients: Bean sprouts, Bamboo shoots, Shoyu broth, Chashu pork, Chicken, Corn, Ginger, Green onions, Miso paste, Mushrooms, Nori, Ramen noodles, Sesame oil, Sesame seeds, Soy sauce, Tofu.",
             allergens: "Allergens: Eggs (used in soft-boiled eggs), Sesame (in sesame oil and seeds), Soy (in soy sauce and toppings), Wheat (in noodles and broths).",
@@ -31,7 +31,7 @@
             scale: 0.25,
             scale2: 0.35,
             rotation: "0 0 0",
-            position: "0 0 1",
+            position: "0 0 0",
             volumePosition: "-0.01 -0.010 -0.01",
             desc: "Ingredients: Sashimi-grade fish (such as tuna or salmon), rice (check for potential cross-contamination if allergic to gluten), avocado, cucumber, edamame, seaweed (Nori), soy sauce, pickled ginger, wasabi.",
             allergens: "Allergens: soy sauce(look for soy-free sauces), fish(be deliberate in choosing other fish for your dish).",
@@ -49,7 +49,7 @@
             scale: 0.25,
             scale2: 0.35,
             rotation: "0 0 0",
-            position: "0 0 1",
+            position: "0 0 0",
             volumePosition: "-0.01 0.05 -0.01",
             desc: "Ingredients: Sushi Rice, Salmon (Shake), Avocado, Cucumber, Nori (Seaweed), Sesame Seeds, Soy Sauce (contains soy and wheat; choose gluten-free if needed), Pickled Ginger, Wasabi.",
             allergens: "Allergens: soy sauce(look for soy-free sauces), fish(be deliberate in choosing other fish for your dish).",
@@ -59,7 +59,7 @@
     ],
 
     next: function (){
-        if (this.selected < this.dishes.length - 1){
+        if (this.selected < this.dishes.length -1){
             this.selected++
         }
     },
@@ -80,26 +80,37 @@
         document.querySelector("#recipe").innerText = selectedDish.recipe;
         document.querySelector("#ingredients").innerText = selectedDish.ingredients;
 
-        let childArray = Array.from(document.querySelector("#models").childNodes);
-        let foodModels = Array.from(document.querySelector("#food-models").childNodes);
+        // let childArray = Array.from(document.querySelector("#models").childNodes);
+        // let foodModels = Array.from(document.querySelector("#food-models").childNodes);
+
+        let models = document.querySelectorAll("#models mr-model");
+        let volumeModels = document.querySelectorAll("#food-models mr-model");
+
+        models.forEach(model => {
+            model.object3D.visible = model.dataset.name === selectedDish.name;
+        });
+    
+        volumeModels.forEach(model => {
+            model.object3D.visible = model.dataset.name === selectedDish.name;
+        });
 
         // Hide all the dishes but the selected one
-        childArray.forEach(child =>{
-            if (child.dataset.name == App.dishes[App.selected].name){
-                child.object3D.visible = true;
+        // childArray.forEach(child =>{
+        //     if (child.dataset.name == App.dishes[App.selected].name){
+        //         child.object3D.visible = true;
 
-            } else {
-                child.object3D.visible = false;
-            }
-        });
+        //     } else {
+        //         child.object3D.visible = false;
+        //     }
+        // });
 
-        foodModels.forEach(child =>{
-            if(child.dataset.name == App.dishes[App.selected].name){
-                child.object3D.visible = true;
-            } else {
-                child.object3D.visible = false;
-            }
-        });
+        // foodModels.forEach(child =>{
+        //     if(child.dataset.name == App.dishes[App.selected].name){
+        //         child.object3D.visible = true;
+        //     } else {
+        //         child.object3D.visible = false;
+        //     }
+        // });
     },
 }
 
@@ -120,16 +131,23 @@
         let model = document.createElement("mr-model");
         model.setAttribute("src", "./assets/" + dish.model);
         model.dataset.name = dish.name;
+        model.dataset.cuisine = dish.cuisine;
+        model.dataset.desc = dish.desc;
+        model.dataset.allergens = dish.allergens;
+        model.dataset.recipe = dish.recipe;
+        model.dataset.ingredients = dish.ingredients;
         model.dataset.position = dish.position;
         model.dataset.rotation = dish.rotation;
-        model.object3D.visible = false; 
+        // model.object3D.visible = false;
+        model.object3D.visible = App.dishes[App.selected].name === dish.name; 
 
         let volumeModel = document.createElement("mr-model");
 
         volumeModel.setAttribute("src", "./assets/" + dish.volumeModel);
         volumeModel.dataset.name = dish.name;
         volumeModel.dataset.position = dish.volumePosition;
-        volumeModel.object3D.visible = false;
+        // volumeModel.object3D.visible = false;
+        volumeModel.object3D.visible = App.dishes[App.selected].name === dish.name;
 
         Object.assign(model.style, {
             scale: dish.scale
@@ -148,7 +166,7 @@
             model.components.set('animation', dish.animation);
         }
 
-        volumeModel.onload = () =>{
+        volumeModel.onLoad = () =>{
             volumeModel.components.set('animation', dish.vAnimation);
 
         }
@@ -156,7 +174,36 @@
     });
 
     document.addEventListener('DOMContentLoaded', function(){
-        App.selected = 0;
+        App.selected = 2;
+        // togglePanelVisibility();
+
+        App.dishes.forEach(dish => {
+            // Assuming your model appending logic is similar to what has been provided earlier
+            let model = document.createElement("mr-model");
+            model.setAttribute("src", "./assets/" + dish.model);
+            model.dataset.name = dish.name;
+            model.dataset.scale = dish.scale;
+            model.object3D.visible = App.dishes[App.selected].name === dish.name; // Initial visibility
+
+            Object.assign(model.style, {
+                scale: dish.scale
+            })
+    
+
+            // let volumeModel = document.createElement("mr-model");
+            // volumeModel.setAttribute("src", "./assets/" + dish.volumeModel);
+            // volumeModel.dataset.name = dish.name;
+            // model.object3D.visible = App.dishes[App.selected].name === dish.name;
+    
+            document.querySelector("#models").append(model); // Assuming you have a container with the ID 'models'
+            // document.querySelector("#volumeModels").append(volumeModel);
+            // Repeat for volume models if necessary
+        });
+
+            
+    
+        // Call the render function to update the UI based on the initial state
+        App.render();
     });
 
 
