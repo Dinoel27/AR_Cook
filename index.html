@@ -1,192 +1,104 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>AR Menu experience</title>
-    <script src="https://cdn.jsdelivr.net/npm/mrjs@latest/dist/mr.js"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR.js Furniture Demo</title>
     <script src="./dist/mr.js"></script>
-
-    <link rel="stylesheet" type="text/css" href="style.css" />
-
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <mr-app debug="true" class="app">
-        <mr-light color="white" intensity="1" data-position="0 1 0.5"></mr-light>
+    <mr-app debug="true">
 
-
-        <!-- <mr-entity data-position="-0.001 1 0.25"> -->
-
-        <mr-panel id="panel" class="stack" data-comp-anchor="type: plane; label:floating;" style="visibility: hidden;">
-
-            <mr-button class="mr-button" style="z-index:10;" onclick="togglePanelVisibilityOff()">Close</mr-button>
-
-    
-
-
-            <mr-div class="information">
-                <mr-div class="tight-stack">
-                    <mr-text id="name">loading</mr-text>
-                    <mr-text id="cuisine">loading</mr-text>
-               
-                <mr-text id="desc">loading</mr-text>
-                <mr-text id="allergens">loading</mr-text>
-                <mr-text id="recipet" class="title-2">loading</mr-text>
-                <mr-text id="recipe">loading</mr-text>
-                <mr-text id="ingredientst" class="title-2">loading</mr-text>
-                <mr-text id="ingredients">loading</mr-text>
-               
-            </mr-div>
-            </mr-div>
-
-            <mr-div class="illustration">
-                <mr-div id="models" style="z-index: 100" ></mr-div>
-            </mr-div>
-
+        <!-- User Interface panel to switch models -->
+        <mr-panel class="bottom-panel">
+            <mr-button class="material-button" data-material="model1" onclick="changeModel(0)"></mr-button>
+            <mr-button class="material-button" data-material="model2" onclick="changeModel(1)"></mr-button>
+            <mr-button class="material-button" data-material="model3" onclick="changeModel(2)"></mr-button>
+            <mr-button class="material-button" data-material="model4" onclick="changeModel(3)"></mr-button>
         </mr-panel>
-        <!-- </mr-entity> -->
 
-        <mr-entity data-comp-anchor="type:plane; label: table;">
-            <mr-model class="spbutton" data-position="0.25 0.5 0.5" onclick="App.prev()"
-            src="./buttonprev.glb"></mr-model>
-        <mr-model class="spbutton" data-position="-0.25 0.5 0.5" onclick="App.next()"
-            src="./buttonnext.glb"></mr-model>
-
-            <mr-model id="book" class="test" data-position="-0.015 0.5 0.5" onclick="togglePanelVisibility()"
-                src="./assets/book_anim_f.glb"></mr-model>
-        </mr-entity>
-
-        <!-- <mr-entity data-comp-anchor="type: plane; label: table"> -->
-        <!-- <mr-model class="test" data-position="-0.001 -0.25 0.25" onclick="togglePanelVisibility()"
-                src="./test.glb"></mr-model> -->
-        <!-- <mr-model id="book" class="test" data-position="-0.015 0.5 0.5" onclick="togglePanelVisibility()"
-                src="./assets/book_anim_f.glb"></mr-model> -->
-
-        <!-- </mr-entity> -->
-
-        <mr-entity data-comp-anchor= "type:plane; label: anchor;" data-position="0.5 0.5 1" style="visibility: hidden;"
-        <mr-volume id="volume">
-            <mr-food id="food"></mr-food>
-            <mr-entity id="food-models"></mr-entity>
-        </mr-volume>
-    </mr-entity>
+        <!-- Entity to display models anchored to the table -->
+        <mr-entity id="models" data-comp-anchor="type:fixed; label:table;" data-position="0 1.5 -0.75"></mr-entity>
 
     </mr-app>
-</body>
 
+    <script>
+        // State management for models and settings
+        const __appState = {
+            selected: 0,  // Initially the first model is selected
+            models: [
+                {
+                    name: "Model 1",
+                    src: './assets/models/model1.glb',
+                    scale: "1 1 1",
+                    rotation: "0 0 0",
+                    position: "0 0 0"
+                },
+                {
+                    name: "Model 2",
+                    src: './assets/models/model2.glb',
+                    scale: "1.2 1.2 1.2",
+                    rotation: "0 0 0",
+                    position: "0 0 0"
+                },
+                {
+                    name: "Model 3",
+                    src: './assets/models/model3.glb',
+                    scale: "0.8 0.8 0.8",
+                    rotation: "0 0 0",
+                    position: "0 0 0"
+                },
+                {
+                    name: "Model 4",
+                    src: './assets/models/model4.glb',
+                    scale: "1 1 1",
+                    rotation: "0 0 0",
+                    position: "0 0 0"
+                }
+            ],
+            // Update app state when model is changed
+            render: function () {
+                const selectedModel = this.models[this.selected];
+                const modelElement = document.getElementById("furniture-model");
 
-<!-- <script>
-    let rig = document.querySelector('#rig')
-    let panels = document.querySelectorAll('.layout')
-
-    let frontIndex = 0
-
-    function switchTab(index) {
-        panels[frontIndex].classList.remove('front')
-        panels[index].classList.add('front')
-        frontIndex = index
-    }
-
-    let unfolded = false
-
-    function spread() {
-        let index = 0
-        let totalWidth = 0
-
-        let forwardVec = getForward(rig)
-
-        for (let panel of panels) {
-
-            totalWidth += panel.width
-        }
-
-        for (let panel of panels) {
-            if (unfolded) {
-                panel.object3D.position.set(0, 0, 0)
-            } else {
-                panel.object3D.position.set(((panel.width) * index) - (totalWidth / panels.length), 0, ((index + 1) % 2) * 0.3)
-                index += 1
+                if (!modelElement) {
+                    let model = document.createElement("mr-model");
+                    model.setAttribute("id", "furniture-model");
+                    model.setAttribute("src", selectedModel.src);
+                    model.setAttribute("data-scale", selectedModel.scale);
+                    model.setAttribute("data-rotation", selectedModel.rotation);
+                    model.setAttribute("data-position", selectedModel.position);
+                    document.getElementById("models").appendChild(model);
+                } else {
+                    // Update existing model with new attributes
+                    modelElement.setAttribute("src", selectedModel.src);
+                    modelElement.setAttribute("data-scale", selectedModel.scale);
+                    modelElement.setAttribute("data-rotation", selectedModel.rotation);
+                    modelElement.setAttribute("data-position", selectedModel.position);
+                }
             }
-            panel.object3D.lookAt(forwardVec)
+        };
 
-
-        }
-
-        unfolded = !unfolded
-
-    }
-
-
-    function getForward(entity) {
-
-        let localForward = new THREE.Vector3(0, 0, 0.5);
-
-        let worldForward = entity.object3D.localToWorld(localForward)
-
-        return worldForward.applyQuaternion(entity.object3D.quaternion);
-
-    }
-
-    document.addEventListener('exitXR', () => {
-        unfolded = false;
-        spread()
-    })
-
-
-</script> -->
-
-
-
-
-<script>
-    function togglePanelVisibility() {
-        var panel = document.getElementById('panel');
-
-        if (panel.style.visibility === 'hidden' || panel.style.visibility === '') {
-            panel.style.visibility = 'visible';
-        }
-        // } else {
-        //     panel.style.visibility = 'hidden';
-        // }
-    }
-
-    function togglePanelVisibilityOff() {
-        if (panel.style.visibility === 'visible' || panel.style.visibility === '') {
-            panel.style.visibility = 'hidden';
-        }
-        // } else {
-        //     panel.style.visibility = 'visible';
-        // }
-    }
-</script>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const model = document.getElementById('book'); // Adjust this ID to your model's
-        let animationAllowed = true; // Flag to control animation playback
-
-        model.addEventListener('click', () => {
-            // Check if animation is allowed to play
-            if (animationAllowed) {
-                // Start the animation
-                model.setAttribute('data-comp-animation', 'clip: 0; action: play;');
-                animationAllowed = false; // Prevent further animation starts until this one completes
-
-                // Wait for the animation to complete (8333 ms for 250 frames at 30 fps)
-                setTimeout(() => {
-                    // Use 'pause' or similar to stop the animation, depending on mr.js capabilities
-                    model.setAttribute('data-comp-animation', 'clip: 0; action: stop;');
-
-                    animationAllowed = true; // Allow animation to be started again
-                }, 8333); // Adjusted duration based on the calculation
+        // Proxy to ensure automatic reactivity on state change
+        const App = new Proxy(__appState, {
+            set(target, property, value) {
+                target[property] = value;
+                App.render();
+                return true;
             }
         });
-    });
-</script>
 
-<script src="script.js"></script>
+        // Change model based on user selection
+        function changeModel(index) {
+            App.selected = index;  // Update the selected model index
+        }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            App.render();  // Initial rendering of the selected model
+        });
+    </script>
+
+</body>
 </html>
